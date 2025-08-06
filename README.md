@@ -62,7 +62,6 @@ The I Protocol implements a **Hybrid Proof-of-Work** system that eliminates comp
 
 <div align="center">
 
-```svg
 <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="400" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -119,7 +118,6 @@ The I Protocol implements a **Hybrid Proof-of-Work** system that eliminates comp
     </marker>
   </defs>
 </svg>
-```
 
 </div>
 
@@ -136,7 +134,6 @@ The System Miner is a revolutionary failsafe mechanism that guarantees block fin
 
 <div align="center">
 
-```svg
 <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="500" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -224,7 +221,6 @@ The System Miner is a revolutionary failsafe mechanism that guarantees block fin
     </marker>
   </defs>
 </svg>
-```
 
 </div>
 
@@ -234,7 +230,6 @@ TNO is a revolutionary fairness mechanism that ensures perfect nonce distributio
 
 <div align="center">
 
-```svg
 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="600" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -350,8 +345,6 @@ TNO is a revolutionary fairness mechanism that ensures perfect nonce distributio
     </marker>
   </defs>
 </svg>
-```
-
 </div>
 
 ### DURA (Distributed Universal Range Assignment)
@@ -360,7 +353,7 @@ DURA ensures fair and deterministic assignment of mining ranges to all participa
 
 <div align="center">
 
-```svg
+
 <svg width="800" height="550" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="550" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -477,8 +470,6 @@ DURA ensures fair and deterministic assignment of mining ranges to all participa
     </marker>
   </defs>
 </svg>
-```
-
 </div>
 
 ## Economic Model
@@ -489,7 +480,6 @@ The I Protocol features a revolutionary economic design that combines extreme sc
 
 <div align="center">
 
-```svg
 <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="500" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -569,7 +559,6 @@ The I Protocol features a revolutionary economic design that combines extreme sc
   <text x="400" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Deflationary Pressure</text>
   <text x="550" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Long-term Sustainability</text>
 </svg>
-```
 
 </div>
 
@@ -579,7 +568,6 @@ The I' token serves as a strategic capital participation instrument, creating a 
 
 <div align="center">
 
-```svg
 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="600" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -675,7 +663,6 @@ The I' token serves as a strategic capital participation instrument, creating a 
     </marker>
   </defs>
 </svg>
-```
 
 </div>
 
@@ -687,7 +674,6 @@ The I Protocol employs a sophisticated three-phase launch strategy designed to e
 
 <div align="center">
 
-```svg
 <svg width="800" height="550" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="550" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -785,7 +771,6 @@ The I Protocol employs a sophisticated three-phase launch strategy designed to e
   <text x="665" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#333">Fair Distribution</text>
   <text x="665" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#689f38">Zero Pre-mine</text>
 </svg>
-```
 
 </div>
 
@@ -795,7 +780,6 @@ The I Protocol Foundation operates under a strict separation model, managing onl
 
 <div align="center">
 
-```svg
 <svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="450" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
@@ -881,7 +865,6 @@ The I Protocol Foundation operates under a strict separation model, managing onl
 
 <div align="center">
 
-```svg
 <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="800" height="400" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>

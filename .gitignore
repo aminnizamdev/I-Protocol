@@ -1,0 +1,54 @@
+# Rust build artifacts
+target/
+Cargo.lock
+
+# Compiled executables
+*.exe
+*.pdb
+
+# Test results
+*_results.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Build directories
+build/
+dist/
+out/
+
+# Node modules (if any)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Other common artifacts
+*.o
+*.a
+*.so
+*.dll
+*.dylib

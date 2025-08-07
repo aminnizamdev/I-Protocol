@@ -516,10 +516,10 @@ The I Protocol features a revolutionary economic design that combines extreme sc
   
   <!-- Fee Structure -->
   <rect x="480" y="160" width="240" height="70" fill="#fff" stroke="#ff9800" stroke-width="1" rx="5"/>
-  <text x="600" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Tiered Fee Structure</text>
-  <text x="600" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Proportional to transaction value</text>
-  <text x="600" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Predictable costs via iPAC</text>
-  <text x="600" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Non-linear burn mechanism</text>
+  <text x="600" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Multi-Phase Fee Model v7.2</text>
+  <text x="600" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Flat $0.01 for microtransactions</text>
+  <text x="600" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">1% proportional above $1</text>
+  <text x="600" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">$10,000 maximum fee cap</text>
   
   <!-- Emission Schedule -->
   <rect x="50" y="270" width="700" height="200" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="2" rx="10"/>
@@ -971,6 +971,7 @@ The I Protocol Foundation operates under a strict separation model, managing onl
 | **Effective Supply** | 999,999.9999943483 I | After genesis burn |
 | **Emission Schedule** | 100 years | 2-year halving intervals |
 | **iPAC Rate** | 1 I = $1,000,000 USD | Fixed unit of account |
+| **Fee Model** | Multi-phase v7.2 | Flat + proportional structure |
 | **Hash Functions** | Blake3 + SHA256 + Dilithium | Triple-layer security |
 | **Consensus** | Hybrid PoW + System Miner | Zero-waste design |
 | **Fairness** | TNO + DURA | Perfect equality |
@@ -986,7 +987,7 @@ The I Protocol Foundation operates under a strict separation model, managing onl
 
 2. **Explore the Economics**
    - Read <mcfile name="3__I_Protocol_Tokenomics_Specification.md" path="c:\Users\VP\Desktop\I PROTOCOL FINAL DRAFT 2\3__I_Protocol_Tokenomics_Specification.md"></mcfile>
-   - Understand the iPAC system
+   - Understand the v7.2 fee model
    - Review the emission schedule
 
 3. **Implementation Guidelines**
@@ -1038,7 +1039,7 @@ I PROTOCOL FINAL DRAFT 2/
 - **Guaranteed Finality**: 0.5-second block times with mathematical certainty
 - **Perfect Fairness**: TNO and DURA eliminate mining advantages
 - **Provable Scarcity**: Fixed 1M supply with deflationary mechanisms
-- **Economic Innovation**: iPAC system provides predictable costs
+- **Economic Innovation**: Multi-phase fee model v7.2 provides predictable costs
 - **Zero Pre-mine**: Fair launch with transparent Genesis Event
 - **Zero-Waste PoW**: Hybrid consensus eliminates energy waste
 - **System Miner Failsafe**: Guaranteed network operation
@@ -1056,7 +1057,7 @@ This repository contains the final architectural blueprints, comprehensive testi
 *   **TNO (Transposed Nonce Orchestration):** A revolutionary nonce selection and assignment mechanism that ensures unpredictable, fair, and secure nonce distribution.
 *   **System Miner Failsafe:** A hardcoded, deterministic function that guarantees block production within 0.5 seconds, even under extreme network failure scenarios. It is not a validator or a node, but a transparent mathematical function within the protocol itself.
 *   **Provably Scarce Tokenomics (`I` Token):** A fixed-supply native token (`I`) with a deflationary fee structure. A portion of every transaction fee is permanently burned, and a unique buy-and-burn mechanism is funded by external investment.
-*   **iPAC (I Protocol Axiomatic Constant):** A hard-coded internal reference value that provides absolute predictability for transaction fees, making the protocol ideal for enterprise and high-volume applications.
+*   **I Protocol Transaction Fee Model (v7.2):** A deterministic, multi-phase fee structure anchored by the iPAC (I Protocol Axiomatic Constant) that ensures predictable transaction costs through flat $0.01 fees for microtransactions under $1 and 1% proportional fees above $1 (capped at $10,000).
 *   **Dual-Asset Ecosystem (`I` & `I'`):** A unique capital alignment model featuring a public utility token (`I`) and a private, non-governance strategic instrument (`I'`) that funds the ecosystem's growth and strengthens the public token's value.
 
 ## Project Status

@@ -65,75 +65,101 @@ const BLOCK_TIME: f64 = 0.5; // 0.5 seconds
 | **...**   | ...            | ...                          | ...                 | ...                  |
 | **99-100**| 49             | 0.000000000000000006         | < 0.000001          | **~989,994.3483**    |
 
-### **`I` Token Fee Structure: The iPAC Architecture (v7.0)**
+### **`I` Token Fee Structure: The I Protocol Transaction Fee Model (v7.2)**
 
-#### **1. Overview & Guiding Philosophy**
+The I Protocol employs a deterministic, multi-phase fee model that ensures long-term economic sustainability, predictable transaction costs, and accessibility for microtransactions — without reliance on oracles or floating gas markets. Anchored by the iPAC (I Protocol Axiomatic Constant), which defines:
 
-The I Protocol's transaction fee architecture is an immutable, on-chain system engineered for three core objectives: **absolute predictability**, **long-term economic sustainability**, and **universal utility**. Unlike models that rely on volatile fee markets or external oracles, our architecture operates on a set of deterministic, hard-coded principles designed to function without intervention for a 100+ year horizon.
+* **1 I = $1,000,000 USD**
+* **1 I = 1,000,000,000,000 i**
+* **→ 1 USD = 1,000,000 i**
 
-This system guarantees that transaction costs remain fair and proportional regardless of the token's market valuation, ensuring the protocol is simultaneously optimized for high-value institutional settlement and fee-sensitive retail microtransactions.
+This model guarantees on-chain stability and precise economic alignment across all transaction types and values.
 
-#### **2. Pillar I: The iPAC (I Protocol Axiomatic Constant)**
+#### **Fee Model Summary**
 
-The foundation of our fee model is a hard-coded, internal reference value known as the **iPAC (I Protocol Axiomatic Constant)**. This constant is permanently set at **1 `I` = $1,000,000 USD**.
+The fee architecture is composed of three regions:
 
-*   **Purpose:** The iPAC is **not** a price oracle. It is a **fixed, axiomatic unit of account** used exclusively by the protocol to calculate fee tiers in a stable and predictable manner. It is a foundational, self-evident truth within the system.
-*   **Strategic Advantage:** By being completely decoupled from the real-world market price, this mechanism achieves two critical security and usability goals:
-    1.  **Immunity to Oracle Manipulation:** The fee system is invulnerable to attacks on or failures of external price feeds, a significant risk vector for other protocols.
-    2.  **Guaranteed Microtransaction Viability:** By anchoring fees to the high valuation of the iPAC, we ensure that if the real market price of `I` is lower (e.g., the launch price of $1,000), the actual dollar cost of transactions remains exceptionally low, preserving the network's utility for everyday use cases.
+**1. Minimum Transaction Threshold**
+* Transactions below 10,000 i (equivalent to $0.01 USD) are rejected at the protocol level.
+* This enforces an anti-spam floor and protects against micro-bloat and denial-of-service attempts.
 
-#### **3. Pillar II: Tiered Proportional Fee Structure & Use Cases**
+**2. Flat Microtransaction Fee Region**
+* **Applicable Range:** 10,000 i ≤ transaction amount < 1,000,000 i
+* **USD Equivalent:** $0.01 ≤ transaction value < $1.00
+* **Fee Charged:** Flat fee of 10,000 i ($0.01 USD)
+* **Purpose:** Ensures affordable microtransaction usability while guaranteeing a minimum economic contribution to the network.
 
-Fees are calculated proportionally based on the amount of `I` being transferred. This ensures fairness and aligns the cost of using the network with the economic value being secured. The fee is determined by a hard-coded, on-chain lookup table that assigns a fee based on the transaction's value range.
+**3. Proportional Fee Region (1% Rule)**
+* **Applicable Range:** transaction amount ≥ 1,000,000 i (≥ $1.00 USD)
+* **Fee Charged:** 1% of transaction amount, subject to a hard upper limit
+* **Fee Formula:**
+  ```
+  Fee (in i) = min(txn_amount / 100, 10,000,000,000)
+  ```
+* **Maximum Fee Cap:**
+  * Absolute fee cap is 10,000,000,000 i, equivalent to $10,000 USD
+  * No transaction, regardless of size, can be charged more than this maximum
 
-*   **On-Chain Fee Distribution:** Every fee collected is instantly and algorithmically split into three components at the protocol level:
-    *   **50% to Miners:** A direct reward for securing the network.
-    *   **30% to the Network Development Fund:** A transparent, on-chain treasury to fund future ecosystem grants, research, and development.
-    *   **20% Permanently Burned:** A constant deflationary pressure, subject to the non-linear decay schedule below.
+#### **Fee Behavior Examples**
 
-*   **Fee Schedule & Use Case Mapping:**
+| Transaction Amount (i) | USD Value | Fee (i) | Fee (USD) |
+|:----------------------|:----------|:--------|:----------|
+| 10,000 | $0.01 | 10,000 | $0.01 |
+| 500,000 | $0.50 | 10,000 | $0.01 |
+| 999,999 | $0.999999 | 10,000 | $0.01 |
+| 1,000,000 | $1.00 | 10,000 | $0.01 |
+| 10,000,000 | $10.00 | 100,000 | $0.10 |
+| 1,000,000,000,000 | $1,000,000 | 10,000,000,000 | $10,000 |
+| 10,000,000,000,000 | $10,000,000 | 10,000,000,000 | $10,000 (capped) |
 
-| Tier | Use Case Profile | Transacted Amount Range (in `I`) | **Fee (in `i` / `I`)** | Benchmark Value (per iPAC) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Micro** | IoT, Web Auth, Tiny Payments | `0.000001` to `< 0.00001` | **100,000,000 `i`** (0.0001 `I`) | $100.00 |
-| **Standard** | Retail Payments, NFT Mints | `0.00001` to `< 0.001` | **1,000,000,000 `i`** (0.001 `I`) | $1,000.00 |
-| **Mid-Tier**| DEX Swaps, Small DeFi | `0.001` to `< 0.1` | **10,000,000,000 `i`** (0.01 `I`) | $10,000.00 |
-| **High-Value**| Large DeFi, Treasury Moves| `0.1` to `< 10.0` | **1,000,000,000,000 `i`** (1.0 `I`) | $1,000,000.00 |
-| **Settlement**| Institutional & Protocol | `>= 10.0` | **10,000,000,000,000 `i`** (10.0 `I`) | $10,000,000.00 |
+#### **Design Objectives**
 
-*   **Minimum Transaction Rule:** To prevent state bloat from network dust, the protocol enforces a consensus rule requiring a minimum transaction amount of **1,000,000 `i`** (0.000001 `I`).
+| Objective | Mechanism |
+|:----------|:----------|
+| Anti-spam protection | Rejection below 10,000 i |
+| Microtransaction viability | Flat $0.01 fee below $1 |
+| Fair proportionality | 1% rule above $1 |
+| Upper-bound predictability | Hard ceiling fee of $10,000 |
+| Sustainability and alignment | 20% burn, 30% dev fund, 50% miners |
+| No reliance on external data | All valuation computed via iPAC |
 
-#### **4. Pillar III: The Non-Linear Burn Sustainability Mechanism**
+#### **Fee Allocation (On-Chain Split)**
 
-This is the protocol's most advanced economic feature, designed to ensure its permanent viability. A fixed burn rate, while powerful, could theoretically exhaust the token supply under a century of extreme, sustained use. The Non-Linear Burn mechanism is a pre-coded, algorithmic failsafe that prevents this.
+Every fee paid is automatically split as follows:
+* **50% to active miners** (or validator equivalent)
+* **30% to the Network Development Fund (NDF)**
+* **20% permanently burned**
 
-*   **Definition:** An automated system that reduces the percentage of fees burned per transaction based on the total cumulative `I` supply that has already been burned.
+This structure funds ecosystem growth, incentivizes participation, and ensures increasing scarcity of the I token over time.
 
-*   **Mechanism:** The burn rate begins at 20% of the fee and decays in discrete, irreversible steps as the network's cumulative burn crosses pre-defined, absolute thresholds.
+#### **Implementation Pseudocode**
 
-| Cumulative `I` Burned (Milestone) | New Burn Rate for All Future Fees |
-| :--- | :--- |
-| `0` to `100,000` `I` | **20%** |
-| `> 100,000` to `250,000` `I` | **10%** |
-| `> 250,000` to `350,000` `I` | **5%** |
-| `> 350,000` to `400,000` `I` | **2%** |
-| `> 400,000` `I` | **1%** |
+```rust
+fn calculate_fee(txn_amount_i: u128) -> u128 {
+    match txn_amount_i {
+        0..=9_999 => 0, // Invalid: below minimum
+        10_000..=999_999 => 10_000, // Flat $0.01
+        _ => {
+            let fee = txn_amount_i / 100; // 1%
+            if fee > 10_000_000_000 {
+                10_000_000_000 // Cap fee at $10K
+            } else {
+                fee
+            }
+        }
+    }
+}
+```
 
-*   **Narrative and Strategic Purpose:** This mechanism allows the protocol to "breathe." It applies aggressive deflationary pressure in its early growth stages to establish scarcity and value. As the protocol matures and becomes a core piece of global infrastructure, it automatically throttles the burn to preserve the long-term security budget and ensure perpetual operation.
+#### **Conclusion**
 
-#### **5. Economic Projections & Stress Test Conclusions**
+The I Protocol Fee Model v7.2 offers:
+* **Predictable economics** for users and enterprises
+* **Protocol-level enforcement** without oracles or floating fees
+* **Long-term sustainability** aligned with 100+ year supply and usage projections
+* **Protection against abuse**, while maintaining inclusivity for small and large participants
 
-Our modeling, based on a realistic, phased adoption reaching a mature state of 2,000 TPS, confirms the following:
-
-*   **Sustainability:** The Non-Linear Burn mechanism is essential. Without it, the protocol's supply could be exhausted in ~75-80 years. With it, the total burn over a century is algorithmically capped at a sustainable level (projected to be between 25-40%), guaranteeing a permanent security budget.
-*   **Meaningful Deflation:** The burn is designed to be a powerful economic force in the protocol's mature state. As block rewards from the emission schedule diminish via halvings, the fee burn will eventually overcome new issuance, turning the I Protocol into a **net-deflationary system** where the total circulating supply decreases over time.
-
-#### **6. Summary of Advantages**
-
-*   **Predictable & Transparent:** All fee logic, anchored by the **iPAC**, is hard-coded and auditable from genesis. Enterprises and users can model costs with absolute certainty.
-*   **Secure & Autonomous:** The elimination of oracles and governance removes major attack vectors and ensures the economic policy remains immutable.
-*   **Structurally Sound:** The architecture is proven to be sustainable under extreme, long-term stress tests. The built-in burn decay acts as a perfect hedge against runaway deflation.
-*   **Incentive-Aligned:** The fee split ensures miners, developers, and the long-term health of the token (via burn) are all perfectly aligned.
+This model embodies the protocol's commitment to fairness, determinism, and efficiency — creating a frictionless environment for real-world, high-frequency, and high-value blockchain adoption.
 
 ## **3. Conclusion**
 

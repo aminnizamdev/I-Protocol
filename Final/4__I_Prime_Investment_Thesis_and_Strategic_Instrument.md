@@ -48,8 +48,11 @@ The perceived "illiquidity" of the `I'` token is its most valuable feature. It i
 The `I'` token is only valuable if the underlying `I` protocol is valuable. Demand for the `I` token is driven by utility and superior incentives, not hype.
 
 **1. Unmatched Utility Through Predictable Costs:**
-The single biggest barrier to enterprise and mainstream DeFi adoption is volatile and unpredictable transaction fees. Our **iPAC fee architecture** solves this.
-*   A gaming company, a DEX, or an institutional settlement layer can build on our protocol with absolute certainty of their operational costs, regardless of market volatility.
+The single biggest barrier to enterprise and mainstream DeFi adoption is volatile and unpredictable transaction fees. Our **I Protocol Transaction Fee Model (v7.2)** solves this with a deterministic, multi-phase structure:
+*   **Flat $0.01 fee for all microtransactions under $1** - ensuring affordable access for small-value use cases
+*   **1% proportional fee above $1 with a $10,000 cap** - providing predictable costs for high-value transactions
+*   **Protocol-level enforcement without oracles** - guaranteeing absolute cost certainty regardless of market volatility
+*   A gaming company, a DEX, or an institutional settlement layer can build on our protocol with complete operational cost predictability.
 *   This makes us the only logical choice for any business that requires a stable P&L and predictable user experience. We aren't competing for speculators; we are competing for real, sustainable on-chain business.
 
 **2. A Self-Funding Ecosystem:**
